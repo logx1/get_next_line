@@ -6,37 +6,39 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:26 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/04 15:46:55 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/05 09:18:37 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *ft_big_line(int fd, char *buffer, char *buckup)
+char	*ft_big_line(int fd, char *buf, char *backup)
 {
-    int byt_number;
-    char *tmp ;
-    
-    byt_number = 1;
-    while (byt_number > 0)
-    {
-        byt_number = read(fd, buffer, BUFFER_SIZE);
-        buffer[byt_number] = '\0';
-        if (!buckup)
-            buckup = ft_strdup("");
-            tmp = buckup;
-            buckup = ft_strjoin(tmp,buffer);
-            free(tmp);
-            tmp = NULL;
-            if (check_new_line(buckup) != 0)
-                break ;
-    }
-    return (buckup);
+	int		read_line;
+	char	*char_temp;
+
+	read_line = 1;
+	while (read_line != 0)
+	{
+		read_line = read(fd, buf, BUFFER_SIZE);
+		if (read_line <= 0)
+			break ;
+		buf[read_line] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		char_temp = backup;
+		backup = ft_strjoin(char_temp, buf);
+		free(char_temp);
+		char_temp = NULL;
+		if (check_new_line(backup) != 0)
+			break ;
+	}
+	return (backup);
 }
 
-char *buckup_finder(char *line)
+char	*buckup_finder(char *line)
 {
-    	size_t		i;
+	size_t		i;
 	char		*backup;
 
 	i = 0;
@@ -53,31 +55,37 @@ char *buckup_finder(char *line)
 	line[i + 1] = '\0';
 	return (backup);
 }
-char *get_next_line(int fd)
+
+char	*get_next_line(int fd)
 {
-    char *line;
-    char *buffer;
-    static char *buckup;
-    buffer = malloc(BUFFER_SIZE + 1);
-    if (fd < 0 || BUFFER_SIZE <= 0)
-        return (0);
-    buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-    if (!buffer)
-        return (0);
-    
-line = ft_big_line(fd, buffer, buckup);   
-    free(buffer);
-    buffer = 0;
-    buckup = buckup_finder(line);
-    return (line);
+	char		*line;
+	char		*buffer;
+	static char	*backup;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	buffer = (char *)malloc(sizeof(char ) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (0);
+	line = ft_big_line(fd, buffer, backup);
+	free(buffer);
+	buffer = 0;
+	if (!line)
+		return (0);
+	backup = buckup_finder(line);
+	return (line);
 }
 
-int main()
-{
-int fd = open("file.txt",O_RDONLY);    
-printf("%s",get_next_line(fd));
-printf("%s",get_next_line(fd));
-printf("%s",get_next_line(fd));
-
-    return (0);
-}
+// int main()
+// {
+// int fd = open("file.txt",O_RDONLY);    
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+// printf("%s",get_next_line(fd));
+//     return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:14:16 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/04 15:45:03 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/05 09:16:54 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,35 @@
 int	ft_strlen(char *str)
 {
 	int	i;
+
 	i = 0;
 	while (str[i] != '\0')
 		i++;
 	return (i);
 }
-char *ft_strdup(char *str)
+
+char	*ft_strdup(char *str)
 {
-	char *copy;
-	int i;
+	char	*copy;
+	int		i;
 
 	i = 0;
 	copy = malloc(sizeof(char ) * (ft_strlen(str) + 1));
 	if (!copy)
 		return (NULL);
-		while (str[i])
-		{
-			copy[i]=str[i];
-			i++;
-		}
+	while (str[i])
+	{
+		copy[i] = str[i];
+		i++;
+	}
 	copy[0] = 0;
 	return (copy);
 }
-int check_new_line(char *str)
+
+int	check_new_line(char *str)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -50,11 +54,11 @@ int check_new_line(char *str)
 	return (0);
 }
 
-char *ft_strjoin(char *str1, char *str2)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	int	i;
-	int j;
-	char *newstr;
+	int		i;
+	int		j;
+	char	*newstr;
 
 	i = 0;
 	j = 0;
@@ -74,7 +78,7 @@ char *ft_strjoin(char *str1, char *str2)
 	return (newstr);
 }
 
-char *ft_substr(char *s, int start, size_t len)
+char	*ft_substr(char *s, int start, size_t len)
 {
 	size_t	i;
 	size_t	slen;

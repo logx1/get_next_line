@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 11:07:26 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/06 05:54:14 by abdel-ou         ###   ########.fr       */
+/*   Created: 2022/11/06 05:57:05 by abdel-ou          #+#    #+#             */
+/*   Updated: 2022/11/06 06:16:16 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_big_line(int fd, char *buffer, char *backup)
 {
@@ -60,18 +60,18 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buffer;
-	static char	*backup;
+	static char	*backup[INT_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buffer = (char *)malloc(sizeof(char ) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	line = ft_big_line(fd, buffer, backup);
+	line = ft_big_line(fd, buffer, backup[fd]);
 	free(buffer);
 	buffer = 0;
 	if (!line)
 		return (0);
-	backup = buckup_finder(line);
+	backup[fd] = buckup_finder(line);
 	return (line);
 }

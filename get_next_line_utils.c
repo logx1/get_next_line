@@ -6,7 +6,7 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:14:16 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/05 09:16:54 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/06 08:25:33 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,10 @@ int	ft_strlen(char *str)
 char	*ft_strdup(char *str)
 {
 	char	*copy;
-	int		i;
 
-	i = 0;
 	copy = malloc(sizeof(char ) * (ft_strlen(str) + 1));
 	if (!copy)
 		return (NULL);
-	while (str[i])
-	{
-		copy[i] = str[i];
-		i++;
-	}
 	copy[0] = 0;
 	return (copy);
 }
@@ -104,11 +97,3 @@ char	*ft_substr(char *s, int start, size_t len)
 	b[i] = '\0';
 	return (b);
 }
-
-// int main()
-// {
-// char str1[] = "abdelmajid ";
-// char str2[] = "El-oualy";
-// printf("%s",ft_strjoin(str1,str2));
-// 	return (0);
-// }

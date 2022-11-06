@@ -6,7 +6,7 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 05:57:05 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/06 06:16:16 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/06 08:37:32 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*get_next_line(int fd)
 		return (0);
 	line = ft_big_line(fd, buffer, backup[fd]);
 	free(buffer);
-	buffer = 0;
 	if (!line)
 		return (0);
 	backup[fd] = buckup_finder(line);

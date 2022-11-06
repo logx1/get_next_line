@@ -6,7 +6,7 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 05:56:29 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/06 06:11:07 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/06 08:25:18 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,10 @@ int	ft_strlen(char *str)
 char	*ft_strdup(char *str)
 {
 	char	*copy;
-	int		i;
 
-	i = 0;
 	copy = malloc(sizeof(char ) * (ft_strlen(str) + 1));
 	if (!copy)
 		return (NULL);
-	while (str[i])
-	{
-		copy[i] = str[i];
-		i++;
-	}
 	copy[0] = 0;
 	return (copy);
 }

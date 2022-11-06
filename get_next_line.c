@@ -6,7 +6,7 @@
 /*   By: abdel-ou <abdel-ou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:26 by abdel-ou          #+#    #+#             */
-/*   Updated: 2022/11/06 05:54:14 by abdel-ou         ###   ########.fr       */
+/*   Updated: 2022/11/06 08:36:24 by abdel-ou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_big_line(int fd, char *buffer, char *backup)
 		if (!backup)
 			backup = ft_strdup("");
 		char_temp = backup;
-		backup = ft_strjoin(char_temp, buffer);
+		backup = ft_strjoin(backup, buffer);
 		free(char_temp);
 		char_temp = NULL;
 		if (check_new_line(backup) != 0)
@@ -69,9 +69,22 @@ char	*get_next_line(int fd)
 		return (0);
 	line = ft_big_line(fd, buffer, backup);
 	free(buffer);
-	buffer = 0;
 	if (!line)
 		return (0);
 	backup = buckup_finder(line);
 	return (line);
 }
+
+// int main()
+// {
+// 	int fd = open("file.txt" , O_RDONLY);
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	printf("%s",get_next_line(fd));
+// 	return (0);
+// }
